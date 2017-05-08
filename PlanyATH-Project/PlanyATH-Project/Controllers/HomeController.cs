@@ -40,32 +40,30 @@ namespace PlanyATH_Project.Controllers
 
         public void ReadDataFromFile()
         {
+            db = Db4oEmbedded.OpenFile("DataBase.data");
             string html = @"C:\Program Files (x86)\IIS Express\temp.html";
-            //HtmlDocument htmlDoc = new HtmlDocument();
-            //htmlDoc.LoadHtml(html);
-            List<string> templist = new List<string>();
-
             HtmlDocument doc = new HtmlDocument();
             doc.Load(html);
 
-            foreach (HtmlNode node in doc.DocumentNode.SelectNodes("//a[@id='result_link']"))
-            {
-                Console.WriteLine("node:" + node.GetAttributeValue("href", null));
-            }
+            var nodes = doc.DocumentNode.Descendants().Where(n=> n.Name == "a").Select(n=>new {Name=n.InnerText, value=n.Attributes[0].Value}).ToList();
 
-            //AddDataToBase(url1, text1);
+            foreach (var item in nodes)
+            {
+                DataModel dm = new DataModel();
+                dm.Name = item.Name;
+                dm.Link = item.value;
+
+                db.Store(dm);
+            }
+            db.Commit();
 
 
         }
 
         public void AddDataToBase(string link, string name)
         {
-            DataModel dm = new DataModel();
-            dm.Name = name;
-            dm.Link = link;
-
-            db.Store(dm);
-            db.Commit();
+            
+            
         }
     }
 }
