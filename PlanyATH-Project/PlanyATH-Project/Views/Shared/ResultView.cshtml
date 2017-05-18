@@ -1,34 +1,36 @@
 ﻿@model IEnumerable<PlanyATH_Project.Models.DataModel>
 <div>
-    <div class="col-lg-3" id="loadData">
+    <div class="col-lg-3" id="personlist-section">
         <table class="table">
 
             <tr>
                 <th>
-                    Wynik
+                    Nazwa
+                </th>
+                <th>
+                    Link
                 </th>
                 <th></th>
             </tr>
 
-            @*@foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    <script>
-                                    $(obj.d).each(function(i,item) {
-                                    $($("<a>").attr("href",item.Link).text(item.Name)).appendTo('body');
-                                    });
-                                    </script>
-            </td>
-                            </tr>
 
-                        }*@
             @foreach (var item in Model)
             {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Link)
+                    </td>
+
                 </tr>
             }
+        </table>
+
+
+
+    </div>
+
+
 </div>

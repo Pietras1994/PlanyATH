@@ -1,4 +1,4 @@
-﻿@model PlanyATH_Project.Models.DataModel
+﻿@model IEnumerable<PlanyATH_Project.Models.DataModel>
 
 @{
     Layout = null;
@@ -7,36 +7,8 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>Szukaj Planu</title>
-</head>
-<body>
-    <h2>Szukaj Planu</h2>
-    @using (Html.BeginForm())
-    {
-        <h3>Model: </h3>
-        <div class="col-xs-3">
-            <input class="form-control" id="ex2" type="text">
-        </div>
-        <input type="button" value="Traži" id="loadData" onclick='getview(parameter)' />
-        <input type="submit" class="btn btn-info" value="Szukaj">
-    }
-
-    @*@Html.Partial("ResultView")*@
-</body>
-</html>
-
-<script>
-    function getview(parameter) {
-        var url = "@Html.Raw(Url.Action("ResultView", "Controller", new { parameterID = "-parameter" }))";
-        url = url.replace("-parameter", parameter);
-        $('#partial').load(url);
-    }
-</script>
-
-@*@*<head>
         <meta name="viewport" content="width=device-width" />
         <link href="~/Content/themes/south-street/jquery.ui.all.css" rel="stylesheet" />
 
@@ -51,14 +23,14 @@
             <input type="submit" value="Filtruj" />
         </form>
         <br />
-        @*Odwołanie się do widoku cząstowego*@
+                @*Odwołanie się do widoku cząstowego*@
+         @Html.Partial("ResultView")
+        @*Pamietajmy, o tym, że aby korzystać z poniższy bibliotek należy je doinstalować do projektu,
+                w tym celu klikamy prawym klawiszem myszy na nazwe projektu  w Solution Explorer, wybieramy Manage Nuget Packages
+            Wyszukujemy i instalujemy następujące biblioteki JQuery JQuery UI  i  JQuery Unobtrusive Ajax
+                *@
 
-@*Pamietajmy, o tym, że aby korzystać z poniższy bibliotek należy je doinstalować do projektu,
-        w tym celu klikamy prawym klawiszem myszy na nazwe projektu  w Solution Explorer, wybieramy Manage Nuget Packages
-    Wyszukujemy i instalujemy następujące biblioteki JQuery JQuery UI  i  JQuery Unobtrusive Ajax
-*@
-
-@*<script src="~/scripts/jquery-2.1.4.js"></script>
+<script src="~/scripts/jquery-2.1.4.js"></script>
         <script src="~/scripts/jquery-ui-1.11.4.js"></script>
         <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
 
@@ -85,4 +57,4 @@
             setupAutoComplite();
         </script>
         </body>
-    </html>*@*@*@
+    </html>

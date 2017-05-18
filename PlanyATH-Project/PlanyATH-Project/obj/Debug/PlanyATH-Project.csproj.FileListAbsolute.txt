@@ -38,3 +38,42 @@ C:\Users\Piotr Waleczek\Documents\Visual Studio 2015\Projects\GIT\PlanyATH\Plany
 C:\Users\Piotr Waleczek\Documents\Visual Studio 2015\Projects\GIT\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.dll
 C:\Users\Piotr Waleczek\Documents\Visual Studio 2015\Projects\GIT\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.pdb
 C:\Users\Piotr Waleczek\Documents\Visual Studio 2015\Projects\GIT\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\csc.exe
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\vbc.exe
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\VBCSCompiler.exe
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\PlanyATH-Project.dll.config
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\PlanyATH-Project.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\PlanyATH-Project.pdb
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\RestSharp.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Helpers.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Mvc.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Razor.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.Razor.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Db4objects.Db4o.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.pdb
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\RestSharp.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Razor.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.Razor.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Helpers.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Mvc.xml
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\obj\Debug\PlanyATH-Project.csprojResolveAssemblyReference.cache
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\obj\Debug\PlanyATH-Project.dll
+C:\Users\Liberator\Desktop\PlanyATHProj\PlanyATH\PlanyATH-Project\PlanyATH-Project\obj\Debug\PlanyATH-Project.pdb

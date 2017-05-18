@@ -18,10 +18,10 @@ namespace PlanyATH_Project.Controllers
             db = Db4oEmbedded.OpenFile(filename);
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public void GetData()
         {
@@ -63,31 +63,31 @@ namespace PlanyATH_Project.Controllers
             }
 
         }
-    
 
 
-        //public ActionResult Index(string searchQuery)
-        //{
 
-        //    IEnumerable<DataModel> resultlist;
+        public ActionResult Index(string searchQuery)
+        {
+
+            IEnumerable<DataModel> resultlist;
 
 
-        //    if (searchQuery != null)
-        //    {
-        //        // zapytanie Linq, ktore bedzie filtrowalo dane ( w naszym przypadku listę osob) na podstawie wprwadzonego searchQuery
-        //        resultlist = DataModel.GetDataModelList().Where(p => p.Name.Contains(searchQuery)).ToArray();
+            if (searchQuery != null)
+            {
+                // zapytanie Linq, ktore bedzie filtrowalo dane ( w naszym przypadku listę osob) na podstawie wprwadzonego searchQuery
+                resultlist = DataModel.GetDataModelList().Where(p => p.Name.Contains(searchQuery)  || searchQuery == p.Name + " " + p.Link).ToArray();
 
-        //    }
-        //    else // Jezeli zapytanie bedzie puste zwrocimy cala tablice naszych danych
-        //        resultlist = DataModel.GetDataModelList().ToArray();
+            }
+            else 
+                resultlist = DataModel.GetDataModelList().ToArray();
 
-        //    if (Request.IsAjaxRequest()) // jezeli zapytanie bedzie typu ajax zwracamy widok czastkowy - w naszym przypadku bedzie tam wyswietlana lista , gdzie musimy rowniez przekazac obiekt
-        //    {
-        //        return PartialView("_PersonList", resultlist);
-        //    }
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ResultView", resultlist);
+            }
 
-        //    return View();
-        //}
+            return View(resultlist);
+        }
         public ActionResult PersonSuggestion(string term)
         {
             var personList = DataModel.GetDataModelList().Where(p => p.Name.Contains(term));
