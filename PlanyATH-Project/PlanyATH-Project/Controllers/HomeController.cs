@@ -2,12 +2,9 @@
 using Db4objects.Db4o;
 using RestSharp;
 using RestSharp.Extensions;
-using System.IO;
 using HtmlAgilityPack;
 using System.Linq;
 using PlanyATH_Project.Models;
-using System.Xml.XPath;
-using System;
 using System.Collections.Generic;
 
 namespace PlanyATH_Project.Controllers
@@ -15,9 +12,10 @@ namespace PlanyATH_Project.Controllers
     public class HomeController : Controller
     {
         IObjectContainer db;
+       public static string filename= "DataBase.data";
         public void DbInit()
         {
-            db = Db4oEmbedded.OpenFile("DataBase.data");
+            db = Db4oEmbedded.OpenFile(filename);
         }
 
         public ActionResult Index()
@@ -40,30 +38,60 @@ namespace PlanyATH_Project.Controllers
 
         public void ReadDataFromFile()
         {
-            db = Db4oEmbedded.OpenFile("DataBase.data");
-            string html = @"C:\Program Files (x86)\IIS Express\temp.html";
-            HtmlDocument doc = new HtmlDocument();
-            doc.Load(html);
 
-            var nodes = doc.DocumentNode.Descendants().Where(n=> n.Name == "a").Select(n=>new {Name=n.InnerText, value=n.Attributes[0].Value}).ToList();
-
-            foreach (var item in nodes)
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(filename))
             {
-                DataModel dm = new DataModel();
-                dm.Name = item.Name;
-                dm.Link = item.value;
+               
 
-                db.Store(dm);
+                string html = @"C:\Program Files (x86)\IIS Express\temp.html";
+                HtmlDocument doc = new HtmlDocument();
+                doc.Load(html);
+
+                var nodes = doc.DocumentNode.Descendants().Where(n => n.Name == "a").Select(n => new { Name = n.InnerText, value = n.Attributes[0].Value }).ToList();
+
+                foreach (var item in nodes)
+                {
+
+                    DataModel dm = new DataModel();
+                    dm.Name = item.Name;
+                    dm.Link = "http://plany.ath.bielsko.pl/" + item.value;
+
+                    db.Store(dm);
+
+                }
+                db.Commit();
             }
-            db.Commit();
-
 
         }
+    
 
-        public void AddDataToBase(string link, string name)
+
+        //public ActionResult Index(string searchQuery)
+        //{
+
+        //    IEnumerable<DataModel> resultlist;
+
+
+        //    if (searchQuery != null)
+        //    {
+        //        // zapytanie Linq, ktore bedzie filtrowalo dane ( w naszym przypadku listę osob) na podstawie wprwadzonego searchQuery
+        //        resultlist = DataModel.GetDataModelList().Where(p => p.Name.Contains(searchQuery)).ToArray();
+
+        //    }
+        //    else // Jezeli zapytanie bedzie puste zwrocimy cala tablice naszych danych
+        //        resultlist = DataModel.GetDataModelList().ToArray();
+
+        //    if (Request.IsAjaxRequest()) // jezeli zapytanie bedzie typu ajax zwracamy widok czastkowy - w naszym przypadku bedzie tam wyswietlana lista , gdzie musimy rowniez przekazac obiekt
+        //    {
+        //        return PartialView("_PersonList", resultlist);
+        //    }
+
+        //    return View();
+        //}
+        public ActionResult PersonSuggestion(string term)
         {
-            
-            
+            var personList = DataModel.GetDataModelList().Where(p => p.Name.Contains(term));
+            return Json(personList, JsonRequestBehavior.AllowGet);
         }
     }
 }
