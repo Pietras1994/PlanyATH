@@ -6,13 +6,15 @@ using HtmlAgilityPack;
 using System.Linq;
 using PlanyATH_Project.Models;
 using System.Collections.Generic;
+using System;
+using System.Text;
 
 namespace PlanyATH_Project.Controllers
 {
     public class HomeController : Controller
     {
         IObjectContainer db;
-       public static string filename= "DataBase.data";
+        public static string filename= "DataBase.data";
         public void DbInit()
         {
             db = Db4oEmbedded.OpenFile(filename);
@@ -57,11 +59,23 @@ namespace PlanyATH_Project.Controllers
                     dm.Link = "http://plany.ath.bielsko.pl/" + item.value;
 
                     db.Store(dm);
-
                 }
                 db.Commit();
             }
 
+        }
+
+        private string UTF8toUnicode(string str)
+        {
+            byte[] bytUTF8;
+            byte[] bytUnicode;
+            string strUnicode = String.Empty;
+
+            bytUTF8 = Encoding.UTF8.GetBytes(str);
+            bytUnicode = Encoding.Convert(Encoding.UTF8, Encoding.Unicode, bytUTF8);
+            strUnicode = Encoding.Unicode.GetString(bytUnicode);
+
+            return strUnicode;
         }
 
 
