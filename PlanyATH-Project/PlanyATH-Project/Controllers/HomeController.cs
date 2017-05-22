@@ -8,6 +8,7 @@ using PlanyATH_Project.Models;
 using System.Collections.Generic;
 using System;
 using System.Text;
+using System.IO;
 
 namespace PlanyATH_Project.Controllers
 {
@@ -43,11 +44,12 @@ namespace PlanyATH_Project.Controllers
 
             using (IObjectContainer db = Db4oEmbedded.OpenFile(filename))
             {
-               
-
                 string html = @"C:\Program Files (x86)\IIS Express\temp.html";
                 HtmlDocument doc = new HtmlDocument();
-                doc.Load(html);
+                //doc.Load(html);
+
+                StreamReader reader = new StreamReader(html, Encoding.UTF8); //put your encoding            
+                doc.Load(reader);
 
                 var nodes = doc.DocumentNode.Descendants().Where(n => n.Name == "a").Select(n => new { Name = n.InnerText, value = n.Attributes[0].Value }).ToList();
 
@@ -62,7 +64,6 @@ namespace PlanyATH_Project.Controllers
                 }
                 db.Commit();
             }
-
         }
 
         private string UTF8toUnicode(string str)
