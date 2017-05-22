@@ -1,20 +1,21 @@
-﻿using System.Web.Mvc;
-using Db4objects.Db4o;
+﻿using Db4objects.Db4o;
+using HtmlAgilityPack;
+using PlanyATH_Server.Models;
 using RestSharp;
 using RestSharp.Extensions;
-using HtmlAgilityPack;
-using System.Linq;
-using PlanyATH_Server.Models;
-using System.Collections.Generic;
-using System;
-using System.Text;
 using System.IO;
-using PlanyATH_Project.Models;
+using System.Linq;
+using System.Text;
+using Topshelf;
 
-namespace PlanyATH_Project.Controllers
+namespace PlanyATH_Server
 {
-    public class HomeController : Controller
+    public class Program
     {
+        static void Main(string[] args)
+        {
+        }
+
         public static string filename = "DataBase.data";
 
         public void GetData()
@@ -29,7 +30,6 @@ namespace PlanyATH_Project.Controllers
             IRestResponse response = client.Execute(request);
 
         }
-
         public void ReadDataFromFile()
         {
 
@@ -37,8 +37,9 @@ namespace PlanyATH_Project.Controllers
             {
                 string html = @"C:\Program Files (x86)\IIS Express\temp.html";
                 HtmlDocument doc = new HtmlDocument();
+                //doc.Load(html);
 
-                StreamReader reader = new StreamReader(html, Encoding.UTF8);          
+                StreamReader reader = new StreamReader(html, Encoding.UTF8);         
                 doc.Load(reader);
 
                 var nodes = doc.DocumentNode.Descendants().Where(n => n.Name == "a").Select(n => new { Name = n.InnerText, value = n.Attributes[0].Value }).ToList();
@@ -46,7 +47,7 @@ namespace PlanyATH_Project.Controllers
                 foreach (var item in nodes)
                 {
 
-                    DataModelView dm = new DataModelView();
+                    DataModel dm = new DataModel();
                     dm.Name = item.Name;
                     dm.Link = "http://plany.ath.bielsko.pl/" + item.value;
 
@@ -56,30 +57,5 @@ namespace PlanyATH_Project.Controllers
             }
         }
 
-        public ActionResult Index(string searchQuery)
-        {
-            IEnumerable<DataModelView> resultlist;
-
-            if (searchQuery != null)
-            {
-                // zapytanie Linq, ktore bedzie filtrowalo dane ( w naszym przypadku listę osob) na podstawie wprwadzonego searchQuery
-                resultlist = DataModelView.GetDataModelList().Where(p => p.Name.Contains(searchQuery)  || searchQuery == p.Name + " " + p.Link).ToArray();
-
-            }
-            else 
-                resultlist = DataModelView.GetDataModelList().ToArray();
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_ResultView", resultlist);
-            }
-
-            return View(resultlist);
-        }
-        public ActionResult PersonSuggestion(string term)
-        {
-            var personList = DataModelView.GetDataModelList().Where(p => p.Name.Contains(term));
-            return Json(personList, JsonRequestBehavior.AllowGet);
-        }
     }
 }

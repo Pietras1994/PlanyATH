@@ -1,15 +1,15 @@
-﻿@model IEnumerable<PlanyATH_Project.Models.DataModel>
+﻿@model IEnumerable<PlanyATH_Project.Models.DataModelView>
 <div>
     <div class="col-lg-3" id="personlist-section">
         <table class="table">
 
             <tr>
-                <th>
+                @*<th>
                     Nazwa
                 </th>
                 <th>
                     Link
-                </th>
+                </th>*@
                 <th>
                     Odnosnik
                 </th>
@@ -19,12 +19,12 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Link)
-                    </td>
+                    </td>*@
                     <td>
                         <a href="@item.Link">@item.Name</a>
                     </td>

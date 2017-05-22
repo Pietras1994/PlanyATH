@@ -117,3 +117,5 @@ C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Pro
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\obj\Debug\PlanyATH-Project.csprojResolveAssemblyReference.cache
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\obj\Debug\PlanyATH-Project.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\obj\Debug\PlanyATH-Project.pdb
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\PlanyATH-Server.exe
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\PlanyATH-Server.pdb
