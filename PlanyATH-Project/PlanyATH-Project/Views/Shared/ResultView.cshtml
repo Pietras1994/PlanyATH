@@ -10,7 +10,9 @@
                 <th>
                     Link
                 </th>
-                <th></th>
+                <th>
+                    Odnosnik
+                </th>
             </tr>
 
 
@@ -23,7 +25,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Link)
                     </td>
-
+                    <td>
+                        <a href="@item.Link">@item.Name</a>
+                    </td>
                 </tr>
             }
         </table>
