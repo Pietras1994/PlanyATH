@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Topshelf;
+using System.Data.Entity;
+using PlanyATH_Server.Concrete;
 
 namespace PlanyATH_Server
 {
@@ -14,6 +16,7 @@ namespace PlanyATH_Server
     {
         static void Main(string[] args)
         {
+            ReadDataFromFile();
         }
 
         public static string filename = "DataBase.data";
@@ -30,32 +33,29 @@ namespace PlanyATH_Server
             IRestResponse response = client.Execute(request);
 
         }
-        public void ReadDataFromFile()
+        public static void ReadDataFromFile()
         {
-
-            using (IObjectContainer db = Db4oEmbedded.OpenFile(filename))
+            using (var context = new PlanStoreContext())
             {
-                string html = @"C:\Program Files (x86)\IIS Express\temp.html";
+                string html = @"C:\Program Files (x86)\IIS Express\StartPage.html";
                 HtmlDocument doc = new HtmlDocument();
                 //doc.Load(html);
 
-                StreamReader reader = new StreamReader(html, Encoding.UTF8);         
+                StreamReader reader = new StreamReader(html, Encoding.UTF8);
                 doc.Load(reader);
 
                 var nodes = doc.DocumentNode.Descendants().Where(n => n.Name == "a").Select(n => new { Name = n.InnerText, value = n.Attributes[0].Value }).ToList();
 
                 foreach (var item in nodes)
                 {
-
-                    DataModel dm = new DataModel();
-                    dm.Name = item.Name;
-                    dm.Link = "http://plany.ath.bielsko.pl/" + item.value;
-
-                    db.Store(dm);
+                    var t = new DataModel
+                    {
+                        Name = item.Name,
+                        Link = "http://plany.ath.bielsko.pl/" + item.value
+                    };
                 }
-                db.Commit();
+                context.SaveChanges();
             }
         }
-
     }
 }

@@ -13,3 +13,16 @@ C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Ser
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\obj\Debug\PlanyATH-Server.pdb
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\Topshelf.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\Topshelf.xml
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\antlr.runtime.dll
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\Ical.Net.Collections.dll
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\Ical.Net.dll
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\NodaTime.dll
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\antlr.runtime.pdb
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\antlr.runtime.xml
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\Ical.Net.pdb
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\Ical.Net.xml
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\Ical.Net.Collections.pdb
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\EntityFramework.dll
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\EntityFramework.xml
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Server\bin\Debug\EntityFramework.SqlServer.xml

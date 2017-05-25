@@ -25,7 +25,7 @@ namespace PlanyATH_Project.Controllers
             //request.AddHeader("cache-control", "no-cache");
             //request.AddHeader("content-type", "application/x-www-form-urlencoded");
             request.AddParameter("application/x-www-form-urlencoded", "search=plan&conductors=1&rooms=1&word=", ParameterType.RequestBody);
-            client.DownloadData(request).SaveAs("temp.html");
+            client.DownloadData(request).SaveAs("StartPage.html");
             IRestResponse response = client.Execute(request);
 
         }
@@ -33,9 +33,9 @@ namespace PlanyATH_Project.Controllers
         public void ReadDataFromFile()
         {
 
-            using (IObjectContainer db = Db4oEmbedded.OpenFile(filename))
+            using (var db = new DataModelContext())
             {
-                string html = @"C:\Program Files (x86)\IIS Express\temp.html";
+                string html = @"C:\Program Files (x86)\IIS Express\StartPage.html";
                 HtmlDocument doc = new HtmlDocument();
 
                 StreamReader reader = new StreamReader(html, Encoding.UTF8);          
@@ -50,11 +50,26 @@ namespace PlanyATH_Project.Controllers
                     dm.Name = item.Name;
                     dm.Link = "http://plany.ath.bielsko.pl/" + item.value;
 
-                    db.Store(dm);
+                    //GetFile("http://plany.ath.bielsko.pl/" + item.value);
+
+                    db.DataModel.Add(dm);
                 }
-                db.Commit();
+                db.SaveChanges();
             }
         }
+
+        //public void GetFile(string link)
+        //{
+        //    HtmlDocument doc = new HtmlDocument();
+
+        //    //StreamReader reader = new StreamReader(link, Encoding.UTF8);
+        //    doc.Load(link);
+
+        //    var nodes = doc.DocumentNode.Descendants().Where(n => n.Name == "a").Select(n => new { Name = "plan.ics - dane z zajęciami dla kalendarzy MS Outlook, Kalendarz Google",
+        //        value = n.Attributes[0].Value }).FirstOrDefault();
+
+            
+        //}
 
         public ActionResult Index(string searchQuery)
         {
