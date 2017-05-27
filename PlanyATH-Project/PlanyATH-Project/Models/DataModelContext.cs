@@ -1,14 +1,9 @@
-﻿using PlanyATH_Server.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace PlanyATH_Project.Models
 {
     public class DataModelContext : DbContext
     {
-        public DbSet<DataModelView> DataModel { get; set; }
+        public DbSet<DataModelView> DataModels { get; set; }
     }
 }

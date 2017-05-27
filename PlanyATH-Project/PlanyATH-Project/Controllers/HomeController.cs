@@ -52,7 +52,7 @@ namespace PlanyATH_Project.Controllers
 
                     //GetFile("http://plany.ath.bielsko.pl/" + item.value);
 
-                    db.DataModel.Add(dm);
+                    db.DataModels.Add(dm);
                 }
                 db.SaveChanges();
             }
