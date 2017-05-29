@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using Topshelf;
 
 namespace PlanyATH_Server
@@ -15,13 +17,18 @@ namespace PlanyATH_Server
     {
         static void Main(string[] args)
         {
+            //CreateDirecrory();
             //CreateDatabase();
             //GetData();
-            //ReadDataFromFile();
-            GetFileICS();
+            ReadDataFromFile();
         }
 
         public static string filename = "DataBase.data";
+
+        public static void CreateDirecrory()
+        {
+            Directory.CreateDirectory(@"ICSFiles");
+        }
 
         public static void CreateDatabase()
         {
@@ -44,7 +51,6 @@ namespace PlanyATH_Server
         {
             using (var db = new PlanContext())
             {
-                //List<PlanModel> plany = new List<Models.PlanModel>();
                 string html = @"C:\Program Files (x86)\IIS Express\StartPage.html";
                 HtmlDocument doc = new HtmlDocument();
 
@@ -53,40 +59,95 @@ namespace PlanyATH_Server
 
                 var nodes = doc.DocumentNode.Descendants().Where(n => n.Name == "a").Select(n => new { Name = n.InnerText, value = n.Attributes[0].Value }).ToList();
 
+                string tempLink;
+
                 foreach (var item in nodes)
                 {
+                    tempLink = "http://plany.ath.bielsko.pl/" + item.value + "&winW=500&winH=300&loadBG=000000";
+
+                    GetFile(tempLink, item.Name);
+
                     var t = new PlanModel
                     {
                         Name = item.Name,
-                        Link = "http://plany.ath.bielsko.pl/" + item.value
+                        Link = tempLink,
+                        FileName = @"~/ICSFiles/" + item.Name + ".ics"
                     };
                     db.PlanModel.Add(t);
                 }
-
                 db.SaveChanges();
             }
         }
 
-        public static void GetFileICS()
+        public static void GetFile(string link, string FileName)
         {
-            string html = @"C:\Program Files (x86)\IIS Express\StartPage.html";
-            HtmlWeb web = new HtmlWeb();
-            HtmlDocument doc = web.Load(html);
 
-            //Uri uri = new Uri("http://plany.ath.bielsko.pl/plan.php?type=10&id=7821");
-            //HtmlWeb web = new HtmlWeb();
-            //HtmlDocument doc = web.Load(uri.AbsoluteUri);
+            Uri uri = new Uri(link);
+            
+            WebClient w = new WebClient();
+            string s = w.DownloadString(uri);
+
+            string tempString = FindLink(s);
+
+            if (tempString != "")
+            {
+                downloadICS("http://plany.ath.bielsko.pl/" + tempString, FileName);
+            }
+            
+        }
 
 
-            //var nodes = doc.DocumentNode.Descendants().Where(n => n.Name == "a" && n.InnerText == "plan.ics - dane z zajęciami dla kalendarzy MS Outlook, Kalendarz Google")
-            //    .Select(n => new { value = n.Attributes[0].Value }).FirstOrDefault();
-            //var nodes = doc.DocumentNode.SelectSingleNode("//*[@id=\"files\"]");
-            //List<string> temp = new List<string>();
-            //var item = doc.DocumentNode.SelectSingleNode(".//*[contains(@class,'data')]")
-            //  .Descendants("a").FirstOrDefault().Attributes["href"].Value.ToList();
-            var nodes = doc.DocumentNode.Descendants().Where(n => n.Name == "a").Select(n => new { Name = n.InnerText, value = n.Attributes[0].Value }).ToList();
-            //var node = doc.DocumentNode.Descendants("div").Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("data"));
+        public struct LinkItem
+        {
+            public string Href;
+            public string Text;
 
+            public override string ToString()
+            {
+                return Href + "\n\t" + Text;
+            }
+        }
+
+        public static string FindLink(string file)
+        {
+            string temp = "";
+            
+            MatchCollection m1 = Regex.Matches(file, @"(<a.*?>.*?</a>)",
+                RegexOptions.Singleline);
+            
+            foreach (Match m in m1)
+            {
+                string value = m.Groups[1].Value;
+                LinkItem i = new LinkItem();
+                
+                Match m2 = Regex.Match(value, @"href=\""(.*?)\""",
+                    RegexOptions.Singleline);
+                if (m2.Success)
+                {
+                    i.Href = m2.Groups[1].Value;
+                }
+                
+                string t = Regex.Replace(value, @"\s*<.*?>\s*", "",
+                    RegexOptions.Singleline);
+                i.Text = t;
+                
+                string a = "plan.ics";
+                if (i.Text.Contains(a))
+                {
+                    temp = i.Href;
+                }
+            }
+            return temp;
+        }
+
+        public static void downloadICS(string link, string FileName)
+        {
+            string tempPath = @"ICSFiles\" + FileName + ".ics";
+
+            using (WebClient webClient = new WebClient())
+            {
+                webClient.DownloadFile(link, tempPath);
+            }
         }
     }
 }

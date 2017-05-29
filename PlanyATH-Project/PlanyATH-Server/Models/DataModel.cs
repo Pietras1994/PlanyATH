@@ -8,5 +8,6 @@ namespace PlanyATH_Server.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Link { get; set; }
+        public string FileName { get; set; }
     }
 }
