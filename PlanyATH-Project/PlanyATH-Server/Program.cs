@@ -17,9 +17,9 @@ namespace PlanyATH_Server
     {
         static void Main(string[] args)
         {
-            //CreateDirecrory();
-            //CreateDatabase();
-            //GetData();
+            CreateDirecrory();
+            CreateDatabase();
+            GetData();
             ReadDataFromFile();
         }
 

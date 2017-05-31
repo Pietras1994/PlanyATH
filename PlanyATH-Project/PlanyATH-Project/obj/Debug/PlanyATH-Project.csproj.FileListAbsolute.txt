@@ -92,7 +92,6 @@ C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Pro
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\PlanyATH-Project.dll.config
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\PlanyATH-Project.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\PlanyATH-Project.pdb
-C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Db4objects.Db4o.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Microsoft.Web.Infrastructure.dll
@@ -103,7 +102,6 @@ C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Pro
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.Deployment.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\System.Web.Webpages.Razor.dll
-C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Db4objects.Db4o.xml
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.pdb
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\HtmlAgilityPack.xml
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml

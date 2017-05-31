@@ -1,32 +1,33 @@
-﻿using Db4objects.Db4o;
-using PlanyATH_Project.Controllers;
+﻿using PlanyATH_Server;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PlanyATH_Project.Models
 {
     public class DataModelView
     {
         public string Name { get; set; }
-        public string Link { get; set; }
+        public string FileName { get; set; }
 
         public static IEnumerable<DataModelView> GetDataModelList()
         {
-            //DataModel result = new DataModel();
-            //result = db.Query<DataModel>(n => n.Name == nazwa).FirstOrDefault();
-            //return result;
-            using (IObjectContainer db = Db4oEmbedded.OpenFile(HomeController.filename))
+            using (var db = new PlanContext())
             {
                 var list = new List<DataModelView>();
-                // IEnumerable<DataModel> ResultList = new IEnumerable<DataModel>();
 
-                IObjectSet result = db.QueryByExample(typeof(DataModelView));
-                foreach (object item in result)
+
+                var result = db.PlanModel.ToList();
+
+                foreach (var item in result)
                 {
-                    DataModelView res = (DataModelView)item;
-                    list.Add(res);
-
+                    var plan = new DataModelView()
+                    {
+                        FileName = item.FileName,
+                        Name = item.Name
+                    };
+                    list.Add(plan);
+                    
                 }
-                db.Close();
                 return list;
             }
         }
