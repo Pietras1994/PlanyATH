@@ -1,40 +1,29 @@
 ﻿@model IEnumerable<PlanyATH_Project.Models.DataModelView>
+@using PlanyATH_Project.Controllers
 <div>
-    <div class="col-lg-3" id="personlist-section">
+    <div class="col-xs-8" id="personlist-section">
         <table class="table">
-
             <tr>
                 @*<th>
-                    Nazwa
-                </th>
-                <th>
-                    Link
-                </th>*@
+                        Nazwa
+                    </th>
+                    <th>
+                        Link
+                    </th>*@
                 <th>
                     Nazwa
                 </th>
             </tr>
 
-
             @foreach (var item in Model)
             {
                 <tr>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Link)
-                    </td>*@
-                    <td>
-                        <a href="@item.FileName">@item.Name</a>
+                        <a @*onclick="@{((HomeController)this.ViewContext.Controller).ICSReader(item.FileName);} "*@>@item.Name</a>
                     </td>
+
                 </tr>
             }
         </table>
-
-
-
     </div>
-
-
 </div>

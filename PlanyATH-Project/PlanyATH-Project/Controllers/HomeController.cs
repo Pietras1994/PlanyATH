@@ -2,12 +2,18 @@
 using System.Linq;
 using System.Collections.Generic;
 using PlanyATH_Project.Models;
+using Ical.Net.Interfaces;
+using Ical.Net;
+using Ical.Net.DataTypes;
+using System;
+using Ical.Net.Interfaces.Components;
+using System.Collections;
+using System.IO;
 
 namespace PlanyATH_Project.Controllers
 {
     public class HomeController : Controller
     {
-
         public ActionResult Index(string searchQuery)
         {
             IEnumerable<DataModelView> resultlist;
@@ -31,6 +37,29 @@ namespace PlanyATH_Project.Controllers
         {
             var personList = DataModelView.GetDataModelList().Where(p => p.Name.Contains(term));
             return Json(personList, JsonRequestBehavior.AllowGet);
+        }
+
+        protected CalendarCollection _Calendars;
+        protected string _CalendarAbsPath;
+
+        public void ICSReader(string path)
+        {
+            _CalendarAbsPath = path;
+            GetTodaysEvents();
+            GetUpcomingEvents();
+        }
+        protected IList<Occurrence> GetTodaysEvents()
+        {
+            Calendar.LoadFromFile(Path.Combine(_CalendarAbsPath));
+            
+            return _Calendars.GetOccurrences<IEvent>(DateTime.Today, DateTime.Today.AddDays(1)).ToList();
+        }
+
+        protected IList<Occurrence> GetUpcomingEvents()
+        {
+            Calendar.LoadFromFile(Path.Combine(_CalendarAbsPath));
+
+            return _Calendars.GetOccurrences<IEvent>(DateTime.Today.AddDays(1), DateTime.Today.AddDays(7)).ToList();
         }
     }
 }
