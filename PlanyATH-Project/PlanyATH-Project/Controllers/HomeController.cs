@@ -40,14 +40,25 @@ namespace PlanyATH_Project.Controllers
         }
 
         protected CalendarCollection _Calendars;
-        protected string _CalendarAbsPath;
+        protected string _CalendarAbsPath = @"C:\ICSFiles\L412.ics";
 
-        public void ICSReader(string path)
+        public ActionResult ICSReader(string filepath)
         {
-            _CalendarAbsPath = path;
-            GetTodaysEvents();
-            GetUpcomingEvents();
+            _CalendarAbsPath = filepath;
+            ViewBag.NowEvent = GetNowsEvents();
+            ViewBag.TodayEvent = GetTodaysEvents();
+            ViewBag.UpcomingEvent = GetUpcomingEvents();
+
+            return View();
         }
+
+        protected IList<Occurrence> GetNowsEvents()
+        {
+            Calendar.LoadFromFile(Path.Combine(_CalendarAbsPath));
+
+            return _Calendars.GetOccurrences<IEvent>(DateTime.Now, DateTime.Now).ToList();
+        }
+
         protected IList<Occurrence> GetTodaysEvents()
         {
             Calendar.LoadFromFile(Path.Combine(_CalendarAbsPath));

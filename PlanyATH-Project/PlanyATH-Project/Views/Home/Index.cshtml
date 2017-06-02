@@ -9,68 +9,51 @@
 <html>
 
 <head>
-        <meta name="viewport" content="text/html" charset="utf-8"/>
-        <link href="~/Content/themes/south-street/jquery.ui.all.css" rel="stylesheet" />
-        <link href="~/Content/bootstrap.css" rel="stylesheet" />
-        <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-        <title>Index</title>
-    </head>
-    <body>
-        <div class="col-lg-3">
+    <meta name="viewport" content="text/html" charset="utf-8" />
+    <link href="~/Content/themes/south-street/jquery.ui.all.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="col-lg-3">
 
+    </div>
+    <form id="search-form" method="get" data-ajax="true" data-ajax-target="#personlist-section" data-ajax-update="#personlist-section">
+        <input id="SearchQuery" name="searchQuery" data-autocomplate-source="@Url.Action("PersonSuggestions")" placeholder="Wprowadz" />
+        <input type="submit" value="Filtruj" />
+    </form>
+
+    <div class="row panel">
+        <div id="list" class="col-xs-3">
+            @Html.Partial("ResultView")
         </div>
-        <form id="search-form" method="get" data-ajax="true" data-ajax-target="#personlist-section" data-ajax-update="#personlist-section">
-            <input id="SearchQuery" name="searchQuery" data-autocomplate-source="@Url.Action("PersonSuggestions")" placeholder="Wprowadz" />
-            <input type="submit" value="Filtruj" />
-        </form>
-        @*<table width="100%" cellspacing="0" cellpadding="0">
-            <tr>
-                <td width="50%" background="OBRAZEK">
-                    @Html.Partial("ResultView")
-
-                </td>
-                <td width="50%" background="OBRAZEK">
-                    Test dodany dla celow testowych.
-                </td>
-            </tr>
-        </table>*@
-        <div class="row panel">
-            <div id="list" class="col-xs-4">
-                @Html.Partial("ResultView")
-            </div>
-            <div>
-                @Html.Partial("View")
-            </div>
+        <div>
+            @Html.Partial("View")
         </div>
-        
-        <br />
-         
+    </div>
 
-<script src="~/scripts/jquery-2.1.4.js"></script>
-        <script src="~/scripts/jquery-ui-1.11.4.js"></script>
-        <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+    <br />
 
-        <script>
 
-            var setupAutoComplite = function () {
-
-                var $input = $("#SearchQuery");
-
-                var options = {
-                    source: $input.attr("date-autocomplete-source"),
-                    select: function (event, ui) {
-                        var $input = $("#SearchQuery");
-                        $input.val(ui.item.label);
-                        var $form = $input.parents("from:first");
-                        $form.submit();
-                    }
-                };
-
-                $input.autocomplete(options);
-
+    <script src="~/scripts/jquery-2.1.4.js"></script>
+    <script src="~/scripts/jquery-ui-1.11.4.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        var setupAutoComplite = function () {
+            var $input = $("#SearchQuery");
+            var options = {
+                source: $input.attr("date-autocomplete-source"),
+                select: function (event, ui) {
+                    var $input = $("#SearchQuery");
+                    $input.val(ui.item.label);
+                    var $form = $input.parents("from:first");
+                    $form.submit();
+                }
             };
-
-            setupAutoComplite();
-        </script>
-        </body>
-    </html>
+            $input.autocomplete(options);
+        };
+        setupAutoComplite();
+    </script>
+</body>
+</html>

@@ -1,43 +1,15 @@
-﻿<div id="TodaysEventsPanel" class="CalendarArea">
-    <div class="title">Today's Events</div>
-    <div class="item">
-        <div class="time">GetTimeDisplay(Container.DataItem)</div>
-        <span class="bold">DataBinder.Eval(Container.DataItem, "Source.Summary")</span>
-    </div>
-</div>
+﻿
+@foreach(var item in ViewBag.NowEvent)
+{
+    <div>@item</div>
+}
 
+@foreach (var item in ViewBag.TodayEvent)
+{
+    <div>@item</div>
+}
 
-<%-- Today's Events --%>
-<Panel id="TodaysEventsPanel" CssClass="CalendarArea" runat="server">
-    <div class="title">Today's Events</div>
-    <Repeater ID="TodaysEvents" runat="server">
-        <ItemTemplate>
-            <div class="item">
-                <div class="time"><%# GetTimeDisplay(Container.DataItem) %></div>
-                <span class="bold"><%# DataBinder.Eval(Container.DataItem, "Source.Summary") %></span>
-            </div>
-        </ItemTemplate>
-    </Repeater>
-</Panel>
-
-    <%-- Upcoming Events --%>
-<Panel ID="UpcomingEventsPanel" runat="server" CssClass="CalendarArea">
-    <div class="title">
-        Upcoming Events
-    </div>
-    <Repeater ID="UpcomingEvents" runat="server">
-        <ItemTemplate>
-            <div class="item">
-                <div class="date">
-                    <%# ((DateTime)DataBinder.Eval(Container.DataItem, "Period.StartTime.Local")).ToString("ddd d - ") %>
-                </div>
-                <div class="time">
-                    <%# GetTimeDisplay(Container.DataItem) %>
-                </div>
-                <span class="bold">
-                    <%# DataBinder.Eval(Container.DataItem, "Source.Summary") %>
-                </span>
-            </div>
-        </ItemTemplate>
-    </Repeater>
-</Panel>
+@foreach (var item in ViewBag.UpcomingEvent)
+{
+    <div>@item</div>
+}

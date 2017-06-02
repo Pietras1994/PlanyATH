@@ -166,3 +166,5 @@ C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Pro
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\EntityFramework.SqlServer.dll
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\EntityFramework.xml
 C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\EntityFramework.SqlServer.xml
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Topshelf.dll
+C:\Users\Piotr Waleczek\Desktop\plan-proj\PlanyATH\PlanyATH-Project\PlanyATH-Project\bin\Topshelf.xml

@@ -17,17 +17,30 @@ namespace PlanyATH_Server
     {
         static void Main(string[] args)
         {
+        //    HostFactory.Run(z =>
+        //    {
+        //        z.Service<ServiceCore>(s =>
+        //        {
+        //            s.ConstructUsing(c => new ServiceCore());
+        //            s.WhenStarted(c => c.Start());
+        //            s.WhenStopped(c => c.Stop());
+        //        });
+        //        z.RunAsLocalSystem();
+        //        z.StartAutomatically();
+        //    });
+        }
+
+        public static void RunnAllFunction()
+        {
             CreateDirecrory();
             CreateDatabase();
             GetData();
             ReadDataFromFile();
         }
 
-        public static string filename = "DataBase.data";
-
         public static void CreateDirecrory()
         {
-            Directory.CreateDirectory(@"ICSFiles");
+            Directory.CreateDirectory(@"C:\ICSFiles");
         }
 
         public static void CreateDatabase()
@@ -71,7 +84,7 @@ namespace PlanyATH_Server
                     {
                         Name = item.Name,
                         Link = tempLink,
-                        FileName = @"~/ICSFiles/" + item.Name + ".ics"
+                        FileName = @"C:\ICSFiles\" + item.Name + ".ics"
                     };
                     db.PlanModel.Add(t);
                 }
@@ -142,7 +155,7 @@ namespace PlanyATH_Server
 
         public static void downloadICS(string link, string FileName)
         {
-            string tempPath = @"ICSFiles\" + FileName + ".ics";
+            string tempPath = @"C:\ICSFiles\" + FileName + ".ics";
 
             using (WebClient webClient = new WebClient())
             {

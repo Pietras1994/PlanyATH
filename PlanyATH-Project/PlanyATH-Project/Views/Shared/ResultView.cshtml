@@ -1,15 +1,8 @@
 ﻿@model IEnumerable<PlanyATH_Project.Models.DataModelView>
-@using PlanyATH_Project.Controllers
 <div>
-    <div class="col-xs-8" id="personlist-section">
+    <div id="personlist-section">
         <table class="table">
             <tr>
-                @*<th>
-                        Nazwa
-                    </th>
-                    <th>
-                        Link
-                    </th>*@
                 <th>
                     Nazwa
                 </th>
@@ -19,7 +12,11 @@
             {
                 <tr>
                     <td>
-                        <a @*onclick="@{((HomeController)this.ViewContext.Controller).ICSReader(item.FileName);} "*@>@item.Name</a>
+                        @Ajax.ActionLink(item.Name,
+    "ICSReader",
+    "HomeController",
+    new { pathfile = item.FileName },
+    new AjaxOptions{ UpdateTargetId = "updateTargetId"} )
                     </td>
 
                 </tr>
@@ -27,3 +24,24 @@
         </table>
     </div>
 </div>
+
+<script>
+    function GetEventsDetails() {
+        debugger;
+        $.ajax({
+            type: "GET",
+            url: "Home/ICSReader",
+            data: { userId: Id },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                debugger;
+                alert(result)
+            },
+            error: function (response) {
+                debugger;
+                alert('eror');
+            }
+        });
+    }
+</script>
