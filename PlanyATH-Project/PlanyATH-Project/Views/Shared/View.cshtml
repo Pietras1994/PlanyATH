@@ -1,15 +1,26 @@
-﻿
-@foreach(var item in ViewBag.NowEvent)
+﻿@if (ViewBag.NowEvent != null)
 {
-    <div>@item</div>
+    <div>Now Events</div>
+    foreach (var item in ViewBag.NowEvent)
+    {
+        <div>@item</div>
+    }
 }
 
-@foreach (var item in ViewBag.TodayEvent)
+@if (ViewBag.TodayEvent != null)
 {
-    <div>@item</div>
+    <div>Today Events</div>
+    foreach (var item in ViewBag.TodayEvent)
+    {
+        <div>@item</div>
+    }
 }
 
-@foreach (var item in ViewBag.UpcomingEvent)
+@if (ViewBag.UpcomingEvent != null)
 {
-    <div>@item</div>
+    <div>Upcoming Events</div>
+    foreach (var item in ViewBag.UpcomingEvent)
+    {
+        <div>@item</div>
+    }
 }

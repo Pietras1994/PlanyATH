@@ -9,6 +9,7 @@ using System;
 using Ical.Net.Interfaces.Components;
 using System.Collections;
 using System.IO;
+using System.Web.Services;
 
 namespace PlanyATH_Project.Controllers
 {
@@ -40,35 +41,36 @@ namespace PlanyATH_Project.Controllers
         }
 
         protected CalendarCollection _Calendars;
-        protected string _CalendarAbsPath = @"C:\ICSFiles\L412.ics";
+        //protected string _CalendarAbsPath = @"C:\ICSFiles\L412.ics";
 
-        public ActionResult ICSReader(string filepath)
+        [WebMethod]
+        public ActionResult ICSReader(string path)
         {
-            _CalendarAbsPath = filepath;
-            ViewBag.NowEvent = GetNowsEvents();
-            ViewBag.TodayEvent = GetTodaysEvents();
-            ViewBag.UpcomingEvent = GetUpcomingEvents();
+            //_CalendarAbsPath = path;
+            ViewBag.NowEvent = GetNowsEvents(path);
+            ViewBag.TodayEvent = GetTodaysEvents(path);
+            ViewBag.UpcomingEvent = GetUpcomingEvents(path);
 
-            return View();
+            return View("View");
         }
 
-        protected IList<Occurrence> GetNowsEvents()
+        protected IList<Occurrence> GetNowsEvents(string filepath)
         {
-            Calendar.LoadFromFile(Path.Combine(_CalendarAbsPath));
+            Calendar.LoadFromFile(Path.Combine(filepath));
 
             return _Calendars.GetOccurrences<IEvent>(DateTime.Now, DateTime.Now).ToList();
         }
 
-        protected IList<Occurrence> GetTodaysEvents()
+        protected IList<Occurrence> GetTodaysEvents(string filepath)
         {
-            Calendar.LoadFromFile(Path.Combine(_CalendarAbsPath));
+            Calendar.LoadFromFile(Path.Combine(filepath));
             
             return _Calendars.GetOccurrences<IEvent>(DateTime.Today, DateTime.Today.AddDays(1)).ToList();
         }
 
-        protected IList<Occurrence> GetUpcomingEvents()
+        protected IList<Occurrence> GetUpcomingEvents(string filepath)
         {
-            Calendar.LoadFromFile(Path.Combine(_CalendarAbsPath));
+            Calendar.LoadFromFile(Path.Combine(filepath));
 
             return _Calendars.GetOccurrences<IEvent>(DateTime.Today.AddDays(1), DateTime.Today.AddDays(7)).ToList();
         }

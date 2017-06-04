@@ -3,13 +3,11 @@ using PlanyATH_Server.Models;
 using RestSharp;
 using RestSharp.Extensions;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using Topshelf;
 
 namespace PlanyATH_Server
 {
@@ -17,17 +15,7 @@ namespace PlanyATH_Server
     {
         static void Main(string[] args)
         {
-        //    HostFactory.Run(z =>
-        //    {
-        //        z.Service<ServiceCore>(s =>
-        //        {
-        //            s.ConstructUsing(c => new ServiceCore());
-        //            s.WhenStarted(c => c.Start());
-        //            s.WhenStopped(c => c.Stop());
-        //        });
-        //        z.RunAsLocalSystem();
-        //        z.StartAutomatically();
-        //    });
+            RunnAllFunction();
         }
 
         public static void RunnAllFunction()
