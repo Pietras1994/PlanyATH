@@ -3,7 +3,7 @@
 <div id="result"></div>
 <div>
     <div id="personlist-section">
-        <table class="table">
+        <table class="table table-bordered" style="background-color: lightgray">
             <tr>
                 <th>
                     Nazwa
@@ -14,41 +14,19 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(Model => item.Name)
-
-                        <p align="right">
-                            <input type="button" class="btn btn-primary personPlanBtn"
-                                   data-path="@item.FileName" value="Pokaz Plan" />
-                        </p>
+                        @using (Ajax.BeginForm("ICSReader", "Home", new AjaxOptions() { UpdateTargetId = "costam" }))
+                        {
+                            <input type="submit" class="btn btn-default btn-block" name="path" value="@item.Name" />
+                        }
                     </td>
                 </tr>
             }
         </table>
+        <div id="olaboga">
+
+        </div>
     </div>
 </div>
 
-
-
-@*<script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
-<script>
-    $(".personPlanBtn").click(function () {
-        var btn = $(this);
-        var path = btn.attr("data-path");
-
-        $.ajax({
-            type: 'GET',
-            url: '@Url.Action("ICSReader")',
-            data: { "path": path },
-            dataType: "text/html",
-            success: function (data) {
-                btn.parent().prev().html(data);
-                $("#result").html(data);
-                console.info("przeszlo");
-            }
-        }).done(function (data) {
-            alert("przeszlo");
-            alert(data);
-        });
-    });
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>

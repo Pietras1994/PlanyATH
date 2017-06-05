@@ -84,7 +84,7 @@ namespace PlanyATH_Server
         {
 
             Uri uri = new Uri(link);
-            
+
             WebClient w = new WebClient();
             string s = w.DownloadString(uri);
 
@@ -94,7 +94,7 @@ namespace PlanyATH_Server
             {
                 downloadICS("http://plany.ath.bielsko.pl/" + tempString, FileName);
             }
-            
+
         }
 
 
@@ -112,26 +112,26 @@ namespace PlanyATH_Server
         public static string FindLink(string file)
         {
             string temp = "";
-            
+
             MatchCollection m1 = Regex.Matches(file, @"(<a.*?>.*?</a>)",
                 RegexOptions.Singleline);
-            
+
             foreach (Match m in m1)
             {
                 string value = m.Groups[1].Value;
                 LinkItem i = new LinkItem();
-                
+
                 Match m2 = Regex.Match(value, @"href=\""(.*?)\""",
                     RegexOptions.Singleline);
                 if (m2.Success)
                 {
                     i.Href = m2.Groups[1].Value;
                 }
-                
+
                 string t = Regex.Replace(value, @"\s*<.*?>\s*", "",
                     RegexOptions.Singleline);
                 i.Text = t;
-                
+
                 string a = "plan.ics";
                 if (i.Text.Contains(a))
                 {

@@ -26,7 +26,6 @@ namespace PlanyATH_Project.Models
                         Name = item.Name
                     };
                     list.Add(plan);
-                    
                 }
                 return list;
             }

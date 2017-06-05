@@ -1,31 +1,57 @@
-﻿@model  PlanyATH_Project.ViewModels.ResultViewViewModel
+﻿@model PlanyATH_Project.ViewModels.ResultViewViewModel
 
 @if (Model != null)
 {
-    if (Model.NowEvent != null)
-    {
-        <div>Now Events</div>
-        foreach (var item in Model.NowEvent)
-        {
-            <div>@item</div>
-        }
-    }
+    <div>
+        <table class="table table-bordered" style="background-color: dimgray;
+    color: white;">
+            <tr>
+                <th>
+                    Now Events
+                </th>
+            </tr>
+            @foreach (var item in Model.NowEvent)
+            {
+                <tr>
+                    <th style="background-color: darkgray">
+                        @item
+                    </th>
+                </tr>
+            }
+        </table>
 
-    if (Model.TodayEvent != null)
-    {
-        <div>Today Events</div>
-        foreach (var item in Model.TodayEvent)
-        {
-            <div>@item</div>
-        }
-    }
+        <table class="table table-bordered" style="background-color: dimgray;
+    color: white;">
+            <tr>
+                <th>
+                    Today Events
+                </th>
+            </tr>
+            @foreach (var item in Model.TodayEvent)
+            {
+                <tr>
+                    <th style="background-color: darkgray">
+                        @item
+                    </th>
+                </tr>
+            }
+        </table>
 
-    if (Model.UpcomingEvent != null)
-    {
-        <div>Upcoming Events</div>
-        foreach (var item in Model.UpcomingEvent)
-        {
-            <div>@item</div>
-        }
-    }
+        <table class="table table-bordered" style="background-color: dimgray;
+    color: white;">
+            <tr>
+                <th>
+                    Upcoming Events
+                </th>
+            </tr>
+            @foreach (var item in Model.UpcomingEvent)
+            {
+                <tr>
+                    <th style="background-color: darkgray">
+                        @item
+                    </th>
+                </tr>
+            }
+        </table>
+    </div>
 }

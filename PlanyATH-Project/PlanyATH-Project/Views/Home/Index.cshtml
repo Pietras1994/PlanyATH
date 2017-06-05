@@ -1,60 +1,23 @@
 ﻿@model IEnumerable<PlanyATH_Project.Models.DataModelView>
 
-@{
-    Layout = null;
-}
+<div style="margin-top:15px">
+    @using (Ajax.BeginForm("IndexAjax", "Home", new AjaxOptions() { UpdateTargetId = "list" }))
+    {
+        <input name="searchQuery" class="form-control" placeholder="Wprowadz" />
 
-<!DOCTYPE html>
+        <input type="submit" class="btn btn-danger" value="Szukaj" />
+    }
+</div>
 
-<html>
-
-<head>
-    <meta name="viewport" content="text/html" charset="utf-8" />
-    
-    <link href="~/Content/themes/south-street/jquery.ui.all.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <title>Index</title>
-</head>
-<body>
-    <div class="col-lg-3">
-
-    </div>
-    <form id="search-form" method="get" data-ajax="true" data-ajax-target="#personlist-section" data-ajax-update="#personlist-section">
-        <input id="SearchQuery" name="searchQuery" data-autocomplate-source="@Url.Action("PersonSuggestions")" placeholder="Wprowadz" />
-        <input type="submit" value="Filtruj" />
-    </form>
-
-    <div class="row panel">
-        <div id="list" class="col-xs-3">
-            @Html.Partial("ResultView")
-        </div>
-        @*<div>
-            @Html.Partial("EventsView")
-        </div>*@
+<div class="row panel" style="margin-top:20px; background-color: darkgray">
+    <div id="list" class="col-xs-3">
+        @Html.Partial("ResultView")
     </div>
 
-    <br />
-
-    @*<script src="~/scripts/jquery-2.1.4.js"></script>
-    <script src="~/scripts/jquery-ui-1.11.4.js"></script>*@
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script>
-        var setupAutoComplite = function () {
-            var $input = $("#SearchQuery");
-            var options = {
-                source: $input.attr("date-autocomplete-source"),
-                select: function (event, ui) {
-                    var $input = $("#SearchQuery");
-                    $input.val(ui.item.label);
-                    var $form = $input.parents("from:first");
-                    $form.submit();
-                }
-            };
-            $input.autocomplete(options);
-        };
-        setupAutoComplite();
-    </script>
-</body>
-</html>
-
+    <div id="costam" style="width: 800px;
+    height: auto;
+    background-color: gainsboro;
+    margin-left: 325px;">
+    </div>
+</div>
+<br />

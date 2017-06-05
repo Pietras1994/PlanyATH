@@ -18,28 +18,26 @@ namespace PlanyATH_Project.Controllers
         {
             IEnumerable<DataModelView> resultlist;
 
-            if (searchQuery != null)
-            {
-                resultlist = DataModelView.GetDataModelList().Where(p => p.Name.Contains(searchQuery) || searchQuery == p.Name + " " + p.FileName).ToArray();
-
-            }
-            else
-                resultlist = DataModelView.GetDataModelList().ToArray();
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_ResultView", resultlist);
-            }
+            resultlist = DataModelView.GetDataModelList().ToArray();
 
             return View(resultlist);
         }
+
+        public ActionResult IndexAjax(string searchQuery)
+        {
+            IEnumerable<DataModelView> resultlist;
+
+            resultlist = DataModelView.GetDataModelList().Where(p => p.Name.Contains(searchQuery) || searchQuery == p.Name + " " + p.FileName).ToArray();
+
+            return PartialView("ResultView", resultlist);
+        }
+
         public ActionResult PersonSuggestion(string term)
         {
             var personList = DataModelView.GetDataModelList().Where(p => p.Name.Contains(term));
             return Json(personList, JsonRequestBehavior.AllowGet);
         }
 
-        //  [HttpPost]
         public ActionResult ICSReader(string path)
         {
 
@@ -54,7 +52,8 @@ namespace PlanyATH_Project.Controllers
 
         protected List<string> GetNowsEvents(string filepath)
         {
-            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(filepath));
+
+            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(@"C:\ICSFiles\" + filepath + ".ics"));
             IList<Occurrence> occurrencesn = calendars.GetOccurrences(DateTime.Now.AddHours(-2), DateTime.Now.AddHours(-2)).ToList();
             List<string> Events = new List<string>();
 
@@ -68,11 +67,12 @@ namespace PlanyATH_Project.Controllers
             }
 
             return Events;
+
         }
 
         protected List<string> GetTodaysEvents(string filepath)
         {
-            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(filepath));
+            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(@"C:\ICSFiles\" + filepath + ".ics"));
             IList<Occurrence> occurrencesn = calendars.GetOccurrences(DateTime.Today, DateTime.Today.AddDays(1)).ToList();
             List<string> Events = new List<string>();
 
@@ -90,7 +90,7 @@ namespace PlanyATH_Project.Controllers
 
         protected List<string> GetUpcomingEvents(string filepath)
         {
-            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(filepath));
+            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(@"C:\ICSFiles\" + filepath + ".ics"));
             IList<Occurrence> occurrencesn = calendars.GetOccurrences(DateTime.Today.AddDays(1), DateTime.Today.AddDays(7)).ToList();
             List<string> Events = new List<string>();
 
