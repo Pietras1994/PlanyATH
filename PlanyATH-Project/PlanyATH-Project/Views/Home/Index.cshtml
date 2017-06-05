@@ -10,6 +10,7 @@
 
 <head>
     <meta name="viewport" content="text/html" charset="utf-8" />
+    
     <link href="~/Content/themes/south-street/jquery.ui.all.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
@@ -28,17 +29,16 @@
         <div id="list" class="col-xs-3">
             @Html.Partial("ResultView")
         </div>
-        <div>
-            @Html.Partial("View")
-        </div>
+        @*<div>
+            @Html.Partial("EventsView")
+        </div>*@
     </div>
 
     <br />
 
-
     @*<script src="~/scripts/jquery-2.1.4.js"></script>
     <script src="~/scripts/jquery-ui-1.11.4.js"></script>*@
-    <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script>
         var setupAutoComplite = function () {
             var $input = $("#SearchQuery");
@@ -57,3 +57,4 @@
     </script>
 </body>
 </html>
+

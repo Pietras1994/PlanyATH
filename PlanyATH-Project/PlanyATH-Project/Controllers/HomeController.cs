@@ -7,9 +7,8 @@ using Ical.Net;
 using Ical.Net.DataTypes;
 using System;
 using Ical.Net.Interfaces.Components;
-using System.Collections;
 using System.IO;
-using System.Web.Services;
+using PlanyATH_Project.ViewModels;
 
 namespace PlanyATH_Project.Controllers
 {
@@ -21,10 +20,10 @@ namespace PlanyATH_Project.Controllers
 
             if (searchQuery != null)
             {
-                resultlist = DataModelView.GetDataModelList().Where(p => p.Name.Contains(searchQuery)  || searchQuery == p.Name + " " + p.FileName).ToArray();
+                resultlist = DataModelView.GetDataModelList().Where(p => p.Name.Contains(searchQuery) || searchQuery == p.Name + " " + p.FileName).ToArray();
 
             }
-            else 
+            else
                 resultlist = DataModelView.GetDataModelList().ToArray();
 
             if (Request.IsAjaxRequest())
@@ -40,39 +39,71 @@ namespace PlanyATH_Project.Controllers
             return Json(personList, JsonRequestBehavior.AllowGet);
         }
 
-        protected CalendarCollection _Calendars;
-        //protected string _CalendarAbsPath = @"C:\ICSFiles\L412.ics";
-
-        [WebMethod]
+        //  [HttpPost]
         public ActionResult ICSReader(string path)
         {
-            //_CalendarAbsPath = path;
-            ViewBag.NowEvent = GetNowsEvents(path);
-            ViewBag.TodayEvent = GetTodaysEvents(path);
-            ViewBag.UpcomingEvent = GetUpcomingEvents(path);
 
-            return View("View");
+            var viewModel = new ResultViewViewModel
+            {
+                NowEvent = GetNowsEvents(path),
+                TodayEvent = GetTodaysEvents(path),
+                UpcomingEvent = GetUpcomingEvents(path)
+            };
+            return PartialView("View", viewModel);
         }
 
-        protected IList<Occurrence> GetNowsEvents(string filepath)
+        protected List<string> GetNowsEvents(string filepath)
         {
-            Calendar.LoadFromFile(Path.Combine(filepath));
+            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(filepath));
+            IList<Occurrence> occurrencesn = calendars.GetOccurrences(DateTime.Now.AddHours(-2), DateTime.Now.AddHours(-2)).ToList();
+            List<string> Events = new List<string>();
 
-            return _Calendars.GetOccurrences<IEvent>(DateTime.Now, DateTime.Now).ToList();
+            foreach (Occurrence occurrence in occurrencesn)
+            {
+                DateTime occurrenceTime = occurrence.Period.StartTime.AsSystemLocal;
+                DateTime occurrenceTimee = occurrence.Period.EndTime.AsSystemLocal;
+                IRecurringComponent rc = occurrence.Source as IRecurringComponent;
+                if (rc != null)
+                    Events.Add(rc.Summary + ": " + occurrenceTime.ToShortTimeString() + " - " + occurrenceTimee.ToShortTimeString());
+            }
+
+            return Events;
         }
 
-        protected IList<Occurrence> GetTodaysEvents(string filepath)
+        protected List<string> GetTodaysEvents(string filepath)
         {
-            Calendar.LoadFromFile(Path.Combine(filepath));
-            
-            return _Calendars.GetOccurrences<IEvent>(DateTime.Today, DateTime.Today.AddDays(1)).ToList();
+            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(filepath));
+            IList<Occurrence> occurrencesn = calendars.GetOccurrences(DateTime.Today, DateTime.Today.AddDays(1)).ToList();
+            List<string> Events = new List<string>();
+
+            foreach (Occurrence occurrence in occurrencesn)
+            {
+                DateTime occurrenceTime = occurrence.Period.StartTime.AsSystemLocal;
+                DateTime occurrenceTimee = occurrence.Period.EndTime.AsSystemLocal;
+                IRecurringComponent rc = occurrence.Source as IRecurringComponent;
+                if (rc != null)
+                    Events.Add(rc.Summary + ": " + occurrenceTime.ToShortTimeString() + " - " + occurrenceTimee.ToShortTimeString());
+            }
+
+            return Events;
         }
 
-        protected IList<Occurrence> GetUpcomingEvents(string filepath)
+        protected List<string> GetUpcomingEvents(string filepath)
         {
-            Calendar.LoadFromFile(Path.Combine(filepath));
+            IICalendarCollection calendars = Calendar.LoadFromFile(Path.Combine(filepath));
+            IList<Occurrence> occurrencesn = calendars.GetOccurrences(DateTime.Today.AddDays(1), DateTime.Today.AddDays(7)).ToList();
+            List<string> Events = new List<string>();
 
-            return _Calendars.GetOccurrences<IEvent>(DateTime.Today.AddDays(1), DateTime.Today.AddDays(7)).ToList();
+            foreach (Occurrence occurrence in occurrencesn)
+            {
+                DateTime occurrenceTime = occurrence.Period.StartTime.AsSystemLocal;
+                DateTime occurrenceTimee = occurrence.Period.EndTime.AsSystemLocal;
+                IRecurringComponent rc = occurrence.Source as IRecurringComponent;
+                if (rc != null)
+                    Events.Add(rc.Summary + ": " + occurrenceTime.ToShortTimeString() + " - " + occurrenceTimee.ToShortTimeString());
+            }
+
+            return Events;
         }
     }
 }

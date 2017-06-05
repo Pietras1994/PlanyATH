@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<PlanyATH_Project.Models.DataModelView>
+
+<div id="result"></div>
 <div>
     <div id="personlist-section">
         <table class="table">
@@ -14,37 +16,39 @@
                     <td>
                         @Html.DisplayFor(Model => item.Name)
 
-                        <input type="button" class="btn btn-primary"
-                               data-path="@item.FileName" value="Pokaz Plan" />
-
-                        @*@Ajax.ActionLink(item.Name,
-    "ICSReader",
-    "HomeController",
-    new { pathfile = item.FileName },
-    new AjaxOptions { UpdateTargetId = "updateTargetId" })*@
+                        <p align="right">
+                            <input type="button" class="btn btn-primary personPlanBtn"
+                                   data-path="@item.FileName" value="Pokaz Plan" />
+                        </p>
                     </td>
-
                 </tr>
             }
         </table>
     </div>
 </div>
 
-@section scripts
-{
-    <script>
-        $("input").click(function () {
-            var btn = $(this);
-            var path = btn.attr("data-path");
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ICSReader")',
-                data: { "path": path },
-                dataType: "json",
-                success: function (data) {
-                    btn.parent().prev().html(data);
-                }
-            });
+
+
+@*<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
+<script>
+    $(".personPlanBtn").click(function () {
+        var btn = $(this);
+        var path = btn.attr("data-path");
+
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("ICSReader")',
+            data: { "path": path },
+            dataType: "text/html",
+            success: function (data) {
+                btn.parent().prev().html(data);
+                $("#result").html(data);
+                console.info("przeszlo");
+            }
+        }).done(function (data) {
+            alert("przeszlo");
+            alert(data);
         });
-    </script>
-}
+    });
+</script>

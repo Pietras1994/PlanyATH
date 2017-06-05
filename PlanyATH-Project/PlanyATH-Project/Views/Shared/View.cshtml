@@ -1,26 +1,31 @@
-﻿@if (ViewBag.NowEvent != null)
-{
-    <div>Now Events</div>
-    foreach (var item in ViewBag.NowEvent)
-    {
-        <div>@item</div>
-    }
-}
+﻿@model  PlanyATH_Project.ViewModels.ResultViewViewModel
 
-@if (ViewBag.TodayEvent != null)
+@if (Model != null)
 {
-    <div>Today Events</div>
-    foreach (var item in ViewBag.TodayEvent)
+    if (Model.NowEvent != null)
     {
-        <div>@item</div>
+        <div>Now Events</div>
+        foreach (var item in Model.NowEvent)
+        {
+            <div>@item</div>
+        }
     }
-}
 
-@if (ViewBag.UpcomingEvent != null)
-{
-    <div>Upcoming Events</div>
-    foreach (var item in ViewBag.UpcomingEvent)
+    if (Model.TodayEvent != null)
     {
-        <div>@item</div>
+        <div>Today Events</div>
+        foreach (var item in Model.TodayEvent)
+        {
+            <div>@item</div>
+        }
+    }
+
+    if (Model.UpcomingEvent != null)
+    {
+        <div>Upcoming Events</div>
+        foreach (var item in Model.UpcomingEvent)
+        {
+            <div>@item</div>
+        }
     }
 }
